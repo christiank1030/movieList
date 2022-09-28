@@ -1,3 +1,4 @@
+
 let message = document.querySelector("#message");
 
 let addMovie = (event) => {
