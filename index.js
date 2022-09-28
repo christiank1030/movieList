@@ -25,9 +25,16 @@ let addMovie = (event) => {
 
 document.querySelector("form").addEventListener("submit", addMovie);
 
-let deleteMovie = (event) => {
-    message.textContent = "Movie Deleted!"
+let revealMessage = () => {
+    message.classList.remove("hide")
+    setTimeout(() => {
+        message.classList.add("hide")
+    }, 1000);
+}
 
+let deleteMovie = (event) => {
+    message.textContent = event.target.previousSibling.textContent + " Deleted!";
+    revealMessage();
     return event.target.parentNode.remove();
 }
 
@@ -35,8 +42,10 @@ let crossOffMovie = (event) => {
     event.target.classList.toggle("checked")
 
     if(event.target.classList.contains("checked") === true) {
-        message.textContent = "Movie watched!"
+        message.textContent = event.target.textContent + " watched!"
     } else {
-        message.textContent = "Movie added back!"
+        message.textContent = event.target.textContent + " added back!"
     }
+    revealMessage();
 }
+
